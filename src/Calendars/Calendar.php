@@ -218,7 +218,11 @@ class Calendar
         V::doValidate(V::keySet(
             V::key('end_time', V::timestampType()),
             V::key('start_time', V::timestampType()),
-            V::key('emails', V::simpleArray(V::email()))
+            V::key('emails', V::simpleArray(V::email())),
+            V::keyOptional('calendars', V::keySet(
+                V::key('account_id', V::stringType()),
+                V::key('calendars', V::simpleArray(V::stringType())
+            ))
         ), $params);
 
         // @todo the nylas docs require to pass Unix timestamp as a string, ball shit!
